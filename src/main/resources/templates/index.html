@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{'/student/' + ${student.studentId}}"><h1 th:text="'Welcome ' + ${student.name}"></h1></a>
+<form th:action="@{/logout}" method="post" style="margin-bottom: 20px">
+    <input class="btn btn-danger" type="submit" value="Sign Out"/>
+</form>
+<a class="btn btn-success mb-3" th:href="@{'/student/create'}">Create Student</a>
+<a class="btn btn-success mb-3" th:href="@{'/clazz/create'}">Create Class</a>
+<div>
+    <table>
+        <tr>
+            <th>Class Id</th>
+            <th>Class name</th>
+            <th>Option</th>
+        </tr>
+        <tr th:each="clazz: ${clazzList}">
+            <td th:text="${clazz.clazzId}"></td>
+            <td th:text="${clazz.name}"></td>
+            <td><a class="btn btn-warning" th:href="@{'/clazz/' + ${clazz.clazzId}}" th:text="Details"></a> </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

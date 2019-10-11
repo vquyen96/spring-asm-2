@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid #f1f1f1;}
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div style="margin-left:  35%">
+    <h1>Create Student</h1>
+    <form th:action="@{/student/create}" th:method="post" th:object="${student}" style="width: 50%">
+        <div class="container">
+            <label><b>Name</b></label>
+            <input type="text" th:field="*{name}" placeholder="Enter name" required>
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+            <label><b>Roll Number</b></label>
+            <input type="text"  th:field="*{rollNumber}" placeholder="Enter Roll number" required>
+            <span class="error" th:if="${#fields.hasErrors('rollNumber')}" th:errors="*{rollNumber}"></span>
+
+            <label><b>Email</b></label>
+            <input type="text"  th:field="*{email}" placeholder="Enter Email" required>
+            <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+            <label><b>Password</b></label>
+            <input type="password"  th:field="*{password}" placeholder="Enter Password" required>
+            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+
+            <button type="submit" class="btn btn-success">Register</button>
+            <button type="reset" class="btn btn-primary">Cancel</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
